@@ -72,17 +72,15 @@ class Torrent {
     * Generates SHA-1 pieces for a file.
     * @param string $path The file to hash
     * @param int $pieceLength Defaults to 256KiB
+    * @throws \RuntimeException File error
     * @return string All hashes concatenated together
     */
     public static function hashPieces ( $path , $pieceLength = 262144 ) {
-        if (!$handle = fopen($path,'rb')) {
-            throw new Error("Unable to open {$path}");
-        }
+        if (!$handle = fopen($path,'r')) throw new \RuntimeException("Unable to open {$path}");
         $pieces = '';
         while (!feof($handle)) {
-            if (false === $piece = fread($handle,$pieceLength)) {
-                throw new Error("Unable to read {$path}");
-            }
+            $piece = fread($handle,$pieceLength);
+            if ($piece === false) throw new \RuntimeException("Unable to read {$path}");
             $pieces .= sha1($piece,true);
         }
         fclose($handle);
@@ -96,19 +94,10 @@ class Torrent {
     * @uses self::$data
     */
     public static function open ( $path ) {
-        if (!$handle = fopen($path,'rb')) {
-            throw new Error("Unable to open {$path}");
-        }
-        flock($handle,LOCK_SH);
+        if (!$handle = fopen($path,'r')) throw new \RuntimeException("Unable to open {$path}");
         $read = function($length) use ($handle,$path) {
-            if (false === $data = fread($handle,$length)) {
-                flock($handle,LOCK_UN);
-                throw new Error("Unable to read {$path}");
-            }
-            elseif (strlen($data) !== $length) {
-                flock($handle,LOCK_UN);
-                throw new Error("Unexpected end of file: {$path}");
-            }
+            if (false === $data = fread($handle,$length)) throw new \RuntimeException("Unable to read {$path}");
+            elseif (strlen($data) !== $length) throw new \RuntimeException("Unexpected end of file: {$path}");
             return $data;
         };
         $bdecode = function() use ($read,&$bdecode) {
@@ -137,7 +126,6 @@ class Torrent {
         };
         $torrent = new static;
         $torrent->data = $bdecode();
-        flock($handle,LOCK_UN);
         fclose($handle);
         return $torrent;
     }
@@ -145,18 +133,16 @@ class Torrent {
     /**
     * Saves the instance as a torrent file.
     * @param string $path File path to save to.
-    * @throws Error
+    * @throws \RuntimeException
     * @return self
     * @uses self::$data
     */
     public function save ( $path ) {
-        if (!$handle = fopen($path,'wb')) throw new Error("Unable to write to {$path}");
-        flock($handle,LOCK_EX);
+        if (!$handle = fopen($path,'w')) throw new \RuntimeException("Unable to write to {$path}");
         $write = function($string) use ($handle,$path) {
             for ($total = 0; $total < strlen($string); $total += $count) {
                 if (!$count = fwrite($handle,substr($string,$total))) {
-                    flock($handle,LOCK_UN);
-                    throw new Error("Unable to write to {$path}");
+                    throw new \RuntimeException("Unable to write to {$path}");
                 }
             }
         };
@@ -180,11 +166,7 @@ class Torrent {
             }
         };
         $bencode($this->data);
-        if (!fflush($handle)) {
-            flock($handle,LOCK_UN);
-            throw new Error("Unable to commit data to {$path}");
-        }
-        flock($handle,LOCK_UN);
+        if (!fflush($handle)) throw new \RuntimeException("Unable to commit data to {$path}");
         fclose($handle);
         return $this;
     }
