@@ -1,2 +1,2 @@
-# torrent
+# Helix::Torrent
 Manipulation of torrent files.
