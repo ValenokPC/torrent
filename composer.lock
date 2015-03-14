@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9cae675c25926fcddbcfeae0411322bc",
+    "hash": "f39b4dd6f50b11b9983a720a53099810",
     "packages": [],
     "packages-dev": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-Helix/Dev.git",
-                "reference": "ea889a7b0c48caaa097da90dc53b282478a8036b"
+                "reference": "ddc9236aacfef3e58a0231df5a605f6428fb2a1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-Helix/Dev/zipball/ea889a7b0c48caaa097da90dc53b282478a8036b",
-                "reference": "ea889a7b0c48caaa097da90dc53b282478a8036b",
+                "url": "https://api.github.com/repos/PHP-Helix/Dev/zipball/ddc9236aacfef3e58a0231df5a605f6428fb2a1b",
+                "reference": "ddc9236aacfef3e58a0231df5a605f6428fb2a1b",
                 "shasum": ""
             },
             "bin": [
@@ -39,7 +39,7 @@
             ],
             "description": "Developer metapackage to globally manage a good build environment.",
             "homepage": "https://github.com/php-helix/dev",
-            "time": "2015-03-14 11:41:52"
+            "time": "2015-03-14 12:02:46"
         }
     ],
     "aliases": [],
