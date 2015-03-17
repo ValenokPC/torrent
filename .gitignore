@@ -1,4 +1,3 @@
 *.swp
-composer.phar
+*.torrent
 vendor/
-test/*.test.torrent

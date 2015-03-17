@@ -22,7 +22,7 @@ class Torrent {
     * @uses self::$data
     * @uses self::hashPieces
     **/
-    public static function createFromDirectory ( $path , $pieceLength = 262144 ) {
+    public static function createFromDir ( $path , $pieceLength = 262144 ) {
         $torrent = new static;
         $torrent->data = [
             'creation date' => time(),
@@ -34,6 +34,7 @@ class Torrent {
             ]
         ];
         $dirname = dirname($path);
+        if ($dirname === '.') $dirname = '';
         $dir = new Dir($path,Dir::FOLLOW_SYMLINKS|Dir::SKIP_DOTS|Dir::UNIX_PATHS|Dir::CURRENT_AS_PATHNAME);
         $iter = new \RecursiveIteratorIterator($dir);
         foreach ($iter as $path) {
@@ -96,15 +97,17 @@ class Torrent {
     * @uses self::$data
     */
     public static function open ( $path ) {
+        $offset = 0;
         if (!$handle = fopen($path,'r') or !flock($handle,LOCK_SH)) {
             throw new Error("Unable to open {$path}");
         }
-        $read = function($length) use ($handle,$path) {
+        $read = function($length) use ($handle,$path,&$offset) {
             if (false === $data = fread($handle,$length)) throw new Error("Unable to read {$path}");
             elseif (strlen($data) !== $length) throw new Error("Unexpected end of file: {$path}");
+            $offset += $length;
             return $data;
         };
-        $bdecode = function() use ($read,&$bdecode) {
+        $bdecode = function() use ($read,&$bdecode,&$offset,$path) {
             $type = $read(1);
             if ($type === 'e') return false; // EOF, list/dict trailing e
             elseif ($type === 'l') { // list
@@ -123,18 +126,27 @@ class Torrent {
                 return (int)$int;
             }
             elseif (is_numeric($type)) { // string
-                $length = '';
+                $length = $type;
                 while (':' !== $char = $read(1)) $length .= $char;
                 return $read((int)$length);
             }
             else {
-                throw new Error("Malformed torrent file: {$path}");
+                throw new Error("Malformed torrent file {$path} at offset {$offset}");
             }
         };
         $torrent = new static;
         $torrent->data = $bdecode();
         fclose($handle);
         return $torrent;
+    }
+
+    public function getFilename ( ) {
+        return $this->getName().".torrent";
+    }
+
+    public function getName ( ) {
+        if (!isset($this->data['info']['name'])) return "unnamed";
+        return $this->data['info']['name'];
     }
 
     /**
@@ -153,7 +165,7 @@ class Torrent {
     * @uses self::$data
     */
     public function save ( $path ) {
-        if (!$handle = fopen($path,'c') or !flock($handle,LOCK_EX) or !ftruncate($handle)) {
+        if (!$handle = fopen($path,'c') or !flock($handle,LOCK_EX) or !ftruncate($handle,0)) {
             throw new Error("Unable to open {$path}");
         }
         $write = function($string) use ($handle,$path) {
@@ -185,6 +197,11 @@ class Torrent {
         $bencode($this->data);
         if (!fflush($handle)) throw new Error("Unable to commit data to {$path}");
         fclose($handle);
+        return $this;
+    }
+
+    public function setName ( $name ) {
+        $this->data['info']['name'] = $name;
         return $this;
     }
 
