@@ -140,12 +140,27 @@ class Torrent {
         return $torrent;
     }
 
+    /**
+    * @return null|array[] 2D announce list, even if a single URL is set, or `null` if no announce is present.
+    */
+    public function getAnnounce ( ) {
+        if (isset($this->data['announce-list'])) return $this->data['announce-list'];
+        elseif (isset($this->data['announce'])) return [[$this->data['announce']]];
+    }
+
+    /**
+    * @return string Suggested name + `.torrent`
+    */
     public function getFilename ( ) {
         return $this->getName().".torrent";
     }
 
+    /**
+    * @return string Suggested destination name. Sets the name to `unnamed` if not set.
+    * @uses self::$data
+    */
     public function getName ( ) {
-        if (!isset($this->data['info']['name'])) return "unnamed";
+        if (!isset($this->data['info']['name'])) $this->setName("unnamed");
         return $this->data['info']['name'];
     }
 
@@ -159,12 +174,13 @@ class Torrent {
 
     /**
     * Saves the instance as a torrent file.
-    * @param string $path File path to save to.
+    * @param string $path File path to save to. Defaults to current directory with {@link getFilename()}.
     * @throws Error
     * @return self
     * @uses self::$data
     */
-    public function save ( $path ) {
+    public function save ( $path = null ) {
+        if (!isset($path)) $path = $this->getFilename();
         if (!$handle = fopen($path,'c') or !flock($handle,LOCK_EX) or !ftruncate($handle,0)) {
             throw new Error("Unable to open {$path}");
         }
@@ -200,10 +216,54 @@ class Torrent {
         return $this;
     }
 
+
+    /**
+    * Sets announce URL/s and unsets {@link self::$nodes}.
+    * @param null|string|array[] $urls Single announce URL, 2D array of URLs, or `null` to disable.
+    * @return self
+    * @uses self::$data
+    * @uses self::$nodes
+    */
+    public function setAnnounce ( $announce ) {
+        if (is_string($announce)) {
+            $this->data['announce'] = $announce;
+        }
+        elseif (is_array($announce)) $this->data['announce-list'] = $announce;
+        elseif (!isset($announce)) unset($this->data['announce'],$this->data['announce-list']);
+        return $this;
+    }
+
+    /**
+    * @param string $name Suggested destination name.
+    * @return self
+    * @uses self::$data
+    */
     public function setName ( $name ) {
         $this->data['info']['name'] = $name;
         return $this;
     }
 
-    
+    public function removeNode ( $host , $port = null ) {
+        if (!isset($this->data['nodes'])) return;
+        foreach (array_keys($this->data['nodes']) as $key) {
+            if ($this->data['nodes'][$key][0] === $host) {
+                if (!isset($port) or $this->data['nodes'][$key][1] === $port) {
+                    unset($this->data['nodes'][$key]);
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
+    * @param bool $private
+    * @return self
+    * @uses self::$data
+    */
+    public function setPrivate ( $private ) {
+        if ($private) $this->data['private'] = 1;
+        else unset($this->data['private']);
+        return $this;
+    }
+
 }
