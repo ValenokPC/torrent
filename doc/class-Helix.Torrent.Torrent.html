@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Helix\Torrent\Torrent | Helix::Torrent</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Helix.html">
+						Helix<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Helix.Torrent.html">
+						Torrent					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Helix.Torrent.Torrent.html">Torrent</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Helix.Torrent.Error.html">Error</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Helix.Torrent.html" title="Summary of Helix\Torrent"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Torrent</h1>
+
+
+	<div class="description">
+	<p>Represents a torrent file as an object.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Helix.html">Helix</a>\<a href="namespace-Helix.Torrent.html">Torrent</a><br>
+		
+
+			<b>Located at</b> Torrent.php		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="createFromDir" id="_createFromDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createFromDir">#</a>
+		<code>createFromDir( <span>string <var>$path</var></span>, <span>integer <var>$pieceLength</var> = <span class="php-num">262144</span> </span> )</code>
+
+		<div class="description short">
+			<p>Creates an instance representing a torrent containing a directory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates an instance representing a torrent containing a directory.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+					<dt><var>$pieceLength</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+						<code><a href="class-Helix.Torrent.Torrent.html#_hashPieces">Helix\Torrent\Torrent::hashPieces()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createFromFile" id="_createFromFile">
+
+		<td class="attributes"><code>
+			 public static
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createFromFile">#</a>
+		<code>createFromFile( <span>string <var>$path</var></span>, <span>integer <var>$pieceLength</var> = <span class="php-num">262144</span> </span> )</code>
+
+		<div class="description short">
+			<p>Creates an instance representing a torrent containing a single file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates an instance representing a torrent containing a single file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+					<dt><var>$pieceLength</var></dt>
+					<dd>Defaults to 256KiB</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+						<code><a href="class-Helix.Torrent.Torrent.html#_hashPieces">Helix\Torrent\Torrent::hashPieces()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hashPieces" id="_hashPieces">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hashPieces">#</a>
+		<code>hashPieces( <span>string <var>$path</var></span>, <span>integer <var>$pieceLength</var> = <span class="php-num">262144</span> </span> )</code>
+
+		<div class="description short">
+			<p>Generates SHA-1 pieces for a file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Generates SHA-1 pieces for a file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The file to hash</dd>
+					<dt><var>$pieceLength</var></dt>
+					<dd>Defaults to 256KiB</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>All hashes concatenated together
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Error.html">Helix\Torrent\Error</a></code><br>File error
+				</div>
+
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#_createFromDir">Helix\Torrent\Torrent::createFromDir()</a></code><br>
+						<code><a href="class-Helix.Torrent.Torrent.html#_createFromFile">Helix\Torrent\Torrent::createFromFile()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="open" id="_open">
+
+		<td class="attributes"><code>
+			 public static
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_open">#</a>
+		<code>open( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Parses a torrent file into a new instance.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parses a torrent file into a new instance.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAnnounce" id="_getAnnounce">
+
+		<td class="attributes"><code>
+			 public 
+
+			null|array[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAnnounce">#</a>
+		<code>getAnnounce( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					null|array[]<br>2D announce list, even if a single URL is set, or <code>null</code> if no announce is present.
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFilename" id="_getFilename">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFilename">#</a>
+		<code>getFilename( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Suggested name + <code>.torrent</code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#_getName">Helix\Torrent\Torrent::getName()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code>getName( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Suggested destination name. Sets the name to <code>unnamed</code> if not set.
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+						<code><a href="class-Helix.Torrent.Torrent.html#_setName">Helix\Torrent\Torrent::setName()</a></code><br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#_getFilename">Helix\Torrent\Torrent::getFilename()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isPrivate" id="_isPrivate">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isPrivate">#</a>
+		<code>isPrivate( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="save" id="_save">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_save">#</a>
+		<code>save( <span>string <var>$path</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			<p>Saves the instance as a torrent file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Saves the instance as a torrent file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>File path to save to. Defaults to current directory with <code><a href="class-Helix.Torrent.Torrent.html#_getFilename">Helix\Torrent\Torrent::getFilename()</a></code>.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Error.html">Helix\Torrent\Error</a></code><br>File error
+				</div>
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setAnnounce" id="_setAnnounce">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAnnounce">#</a>
+		<code>setAnnounce( <span>null|string|array[] <var>$announce</var></span> )</code>
+
+		<div class="description short">
+			<p>Sets announce URL/s</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sets announce URL/s</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$announce</var></dt>
+					<dd>Single announce URL, 2D array of URLs, or <code>null</code> to disable.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setName" id="_setName">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setName">#</a>
+		<code>setName( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>Suggested destination name.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#_getName">Helix\Torrent\Torrent::getName()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeNode" id="_removeNode">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeNode">#</a>
+		<code>removeNode( <span>string <var>$host</var></span>, <span>integer <var>$port</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			<p>Removes DHT nodes.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Removes DHT nodes.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$host</var></dt>
+					<dd></dd>
+					<dt><var>$port</var></dt>
+					<dd>Optional</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPrivate" id="_setPrivate">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPrivate">#</a>
+		<code>setPrivate( <span>boolean <var>$private</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$private</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Helix.Torrent.Torrent.html">Helix\Torrent\Torrent</a></code>
+				</div>
+
+
+				<h4>Uses</h4>
+				<div class="list">
+						<code><a href="class-Helix.Torrent.Torrent.html#$data">Helix\Torrent\Torrent::<var>$data</var></a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="data" id="$data">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$data</var>
+			<div class="description short">
+				<p>Torrent structure</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Torrent structure</p>
+
+					<h4>Used by</h4>
+					<div class="list">
+							<code><a href="class-Helix.Torrent.Torrent.html#_createFromDir">Helix\Torrent\Torrent::createFromDir()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_createFromFile">Helix\Torrent\Torrent::createFromFile()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_open">Helix\Torrent\Torrent::open()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_getAnnounce">Helix\Torrent\Torrent::getAnnounce()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_getName">Helix\Torrent\Torrent::getName()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_isPrivate">Helix\Torrent\Torrent::isPrivate()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_save">Helix\Torrent\Torrent::save()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_setAnnounce">Helix\Torrent\Torrent::setAnnounce()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_setName">Helix\Torrent\Torrent::setName()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_removeNode">Helix\Torrent\Torrent::removeNode()</a></code><br>
+							<code><a href="class-Helix.Torrent.Torrent.html#_setPrivate">Helix\Torrent\Torrent::setPrivate()</a></code><br>
+					</div>
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$data" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Helix::Torrent API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

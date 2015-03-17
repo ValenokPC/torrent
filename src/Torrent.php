@@ -5,7 +5,7 @@ namespace Helix\Torrent;
 use RecursiveDirectoryIterator as Dir;
 
 /**
-* Torrent file as an object.
+* Represents a torrent file as an object.
 */
 class Torrent {
 
@@ -20,7 +20,7 @@ class Torrent {
     * @param int $pieceLength
     * @return self
     * @uses self::$data
-    * @uses self::hashPieces
+    * @uses self::hashPieces()
     **/
     public static function createFromDir ( $path , $pieceLength = 262144 ) {
         $torrent = new static;
@@ -53,7 +53,7 @@ class Torrent {
     * @param int $pieceLength Defaults to 256KiB
     * @return self
     * @uses self::$data
-    * @uses self::hashPieces
+    * @uses self::hashPieces()
     **/
     public static function createFromFile ( $path , $pieceLength = 262144 ) {
         $torrent = new static;
@@ -142,6 +142,7 @@ class Torrent {
 
     /**
     * @return null|array[] 2D announce list, even if a single URL is set, or `null` if no announce is present.
+    * @uses self::$data
     */
     public function getAnnounce ( ) {
         if (isset($this->data['announce-list'])) return $this->data['announce-list'];
@@ -150,6 +151,7 @@ class Torrent {
 
     /**
     * @return string Suggested name + `.torrent`
+    * @uses self::getName()
     */
     public function getFilename ( ) {
         return $this->getName().".torrent";
@@ -158,6 +160,7 @@ class Torrent {
     /**
     * @return string Suggested destination name. Sets the name to `unnamed` if not set.
     * @uses self::$data
+    * @uses self::setName()
     */
     public function getName ( ) {
         if (!isset($this->data['info']['name'])) $this->setName("unnamed");
@@ -175,7 +178,7 @@ class Torrent {
     /**
     * Saves the instance as a torrent file.
     * @param string $path File path to save to. Defaults to current directory with {@link getFilename()}.
-    * @throws Error
+    * @throws Error File error
     * @return self
     * @uses self::$data
     */
@@ -218,11 +221,10 @@ class Torrent {
 
 
     /**
-    * Sets announce URL/s and unsets {@link self::$nodes}.
-    * @param null|string|array[] $urls Single announce URL, 2D array of URLs, or `null` to disable.
+    * Sets announce URL/s
+    * @param null|string|array[] $announce Single announce URL, 2D array of URLs, or `null` to disable.
     * @return self
     * @uses self::$data
-    * @uses self::$nodes
     */
     public function setAnnounce ( $announce ) {
         if (is_string($announce)) {
@@ -243,6 +245,13 @@ class Torrent {
         return $this;
     }
 
+    /**
+    * Removes DHT nodes.
+    * @param string $host
+    * @param int $port Optional
+    * @return self
+    * @uses self::$data
+    */
     public function removeNode ( $host , $port = null ) {
         if (!isset($this->data['nodes'])) return;
         foreach (array_keys($this->data['nodes']) as $key) {

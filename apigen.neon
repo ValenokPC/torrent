@@ -1,0 +1,13 @@
+main: Helix\\Torrent
+title: Helix::Torrent
+
+accessLevels: [public,protected]
+deprecated: false
+destination: doc
+extensions: [php]
+internal: false
+noSourceCode: true
+php: false
+quiet: false
+source: [src]
+tree: false
