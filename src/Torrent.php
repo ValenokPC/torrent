@@ -125,7 +125,7 @@ class Torrent {
             elseif (is_numeric($type)) { // string
                 $length = '';
                 while (':' !== $char = $read(1)) $length .= $char;
-                return $read((int)$length));
+                return $read((int)$length);
             }
             else {
                 throw new Error("Malformed torrent file: {$path}");
