@@ -153,7 +153,7 @@ class Torrent {
     * @uses self::$data
     */
     public function save ( $path ) {
-        if (!$handle = fopen($path,'c') or !flock($handle,LOCK_EX)) {
+        if (!$handle = fopen($path,'c') or !flock($handle,LOCK_EX) or !ftruncate($handle)) {
             throw new Error("Unable to open {$path}");
         }
         $write = function($string) use ($handle,$path) {
