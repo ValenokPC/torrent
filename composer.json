@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Manipulation of torrent files.",
     "keywords": ["torrent"],
-    "homepage": "https://github.com/PHP-Helix/Torrent",
+    "homepage": "https://github.com/php-helix/torrent",
     "license": "MIT",
     "authors": [
         {
